@@ -53,7 +53,7 @@ export const Login = () => {
         setLoading(false);
         history.push({
             pathname: '/feed',
-            state: {username}
+            state: {username,userId: json.userId}
         })
 
     }

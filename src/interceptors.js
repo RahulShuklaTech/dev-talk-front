@@ -45,7 +45,7 @@ export default function setupInterceptors(history) {
             }
 
             if (status === 403 || status === 400) {
-                history.push("/login")
+                history.push("/")
             }
             return Promise.reject(error)
         }

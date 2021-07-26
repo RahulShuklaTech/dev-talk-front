@@ -3,6 +3,7 @@ import {  HStack, Box, Button } from "@chakra-ui/react"
 import { Heading } from "@chakra-ui/react"
 import { Spacer } from "@chakra-ui/react"
 import { useHistory, useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 export const Nav = () => {
     const location = useLocation();
@@ -25,6 +26,17 @@ export const Nav = () => {
         }
 
     }
+
+    const handleProfile = async () => { 
+        history.push({
+            pathname: "/profile/",
+            state: {username}
+        })
+        
+    }
+
+
+
     console.log(username)
 
     return (
@@ -36,9 +48,9 @@ export const Nav = () => {
             </Box>
             <Spacer />
             <HStack>
-                <Button>Profile</Button>
+                <Button colorScheme = "blue" onClick = {handleProfile}>Profile</Button>
                 <Spacer width="10px" />
-                <Button onClick = {handleSignOut}>Log Out</Button>
+                <Button colorScheme = "red" onClick = {handleSignOut}>Log Out</Button>
             </HStack>
         </HStack>
     )

@@ -7,6 +7,7 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
+    Spacer,
 } from "@chakra-ui/react"
 import { Button } from '@chakra-ui/react'
 import { Textarea } from "@chakra-ui/react"
@@ -14,22 +15,22 @@ import axios from 'axios'
 
 
 
-const sendData = async (e,value,setPosts,setIsOpen) => { 
+const sendData = async (e, value, setPosts, setIsOpen) => {
     e.preventDefault();
-    if(value === "") return;
-    let response = await axios.post('/post', {content: value})
-    if(response.status === 200) {
+    if (value === "") return;
+    let response = await axios.post('/post', { content: value })
+    if (response.status === 200) {
         setPosts(posts => posts.concat(response.data.message))
     }
-    console.log("response",response)    
+    console.log("response", response)
     setIsOpen(state => !state)
-    
+
 }
 
 
-export const AddPostForm = ({isOpen,onClose,setPosts,setIsOpen}) => {
+export const AddPostForm = ({ isOpen, onClose, setPosts, setIsOpen }) => {
 
-    const [value,setValue] = React.useState('')
+    const [value, setValue] = React.useState('')
 
     return (
         <>
@@ -39,14 +40,16 @@ export const AddPostForm = ({isOpen,onClose,setPosts,setIsOpen}) => {
                     <ModalHeader>Add a new post</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                    <Textarea placeholder="Enter your post here" value = {value} onChange = {(e) => setValue(e.target.value)}/>
+                        <Textarea placeholder="Enter your post here" value={value} onChange={(e) => setValue(e.target.value)} />
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme="blue" mr={3} onClick={onClose}>
+                        <Button colorScheme="blue" onClick={(e) => sendData(e, value, setPosts, setIsOpen)}>Add Post</Button>
+                        <Spacer />
+                        <Button  colorScheme="red" mr={3} onClick={onClose}>
                             Close
                         </Button>
-                        <Button variant="ghost" onClick = {(e) => sendData(e,value,setPosts,setIsOpen)}>Add Post</Button>
+
                     </ModalFooter>
                 </ModalContent>
             </Modal>
