@@ -28,7 +28,7 @@ export const Nav = () => {
     console.log(username)
 
     return (
-        <HStack spacing="24px" width="100%" border="2px solid black" >
+        <HStack spacing="24px" width="100%" marginY = {1}>
 
             <Box >
                 <Heading>DevTalk</Heading>

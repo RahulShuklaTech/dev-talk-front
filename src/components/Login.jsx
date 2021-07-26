@@ -60,7 +60,7 @@ export const Login = () => {
     }
 
     return (
-        <Container maxW="container.xl" border="2px solid black"  >
+        <Container maxW="container.xl"  centerContent marginTop="2rem" >
             <Heading as="h2" size="2xl">
                 DevTalk
             </Heading>
@@ -68,14 +68,17 @@ export const Login = () => {
             <form onSubmit={handleSubmit}  >
                 <VStack
                     divider={<StackDivider borderColor="gray.200" />}
-                    spacing={4}
-                    align="center"
-                    marginTop="4rem"
+                    spacing={2}
+                        align="center"
+                        marginTop="2rem"
+                        backgroundColor="lightgrey"
+                        padding="2rem"
+                        borderRadius="6px"
                 >
-                    <Heading as="h2" size="xl" marginBottom="2rem">
+                    <Heading as="h2" size="lg" marginBottom="2rem">
                         Login
                     </Heading>
-                    <Box bg="" w="100%" p={0} color="black">
+                    <Box bg="white" w="100%" py={3} px = {5} marginY= {4} color="black">
 
                         <FormControl id="username">
                             <FormLabel>Username</FormLabel>
@@ -98,7 +101,7 @@ export const Login = () => {
                        Login
                     </Button>
                     
-                    <Text fontSize="md">Dont have an account <Link to = "/signup">Sign up</Link></Text> 
+                    <Text fontSize="md">Dont have an account <Link to = "/signup"><Text color="twitter.500" as ="span">Sign Up</Text></Link></Text> 
                     <Box color="red" p={3}>{errorMessage}</Box>
                 </VStack>
             </form >

@@ -14,18 +14,20 @@ import axios from 'axios'
 
 
 
-const sendData = (e,value) => { 
+const sendData = async (e,value,setPosts,setIsOpen) => { 
     e.preventDefault();
     if(value === "") return;
-    axios.post('/post', {content: value})
-        .then(response => { 
-            console.log(response)
-        }
-    )
+    let response = await axios.post('/post', {content: value})
+    if(response.status === 200) {
+        setPosts(posts => posts.concat(response.data.message))
+    }
+    console.log("response",response)    
+    setIsOpen(state => !state)
+    
 }
 
 
-export const AddPostForm = ({isOpen,onClose}) => {
+export const AddPostForm = ({isOpen,onClose,setPosts,setIsOpen}) => {
 
     const [value,setValue] = React.useState('')
 
@@ -44,7 +46,7 @@ export const AddPostForm = ({isOpen,onClose}) => {
                         <Button colorScheme="blue" mr={3} onClick={onClose}>
                             Close
                         </Button>
-                        <Button variant="ghost" onClick = {(e) => sendData(e,value)}>Add Post</Button>
+                        <Button variant="ghost" onClick = {(e) => sendData(e,value,setPosts,setIsOpen)}>Add Post</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
