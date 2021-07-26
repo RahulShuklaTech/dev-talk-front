@@ -1,6 +1,6 @@
 import { Box, HStack, Text } from '@chakra-ui/react'
 import React from 'react'
-import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react"
+// import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react"
 import { Image } from "@chakra-ui/react"
 import { Badge } from "@chakra-ui/react"
 
