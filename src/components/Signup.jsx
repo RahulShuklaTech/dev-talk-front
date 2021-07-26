@@ -88,7 +88,7 @@ export const Signup = () => {
             setLoading(false);
             return;
         }
-        let result = await response.json();
+         await response.json();
 
         setErrorMessage("");
         setLoading(false);
@@ -225,7 +225,7 @@ export const Signup = () => {
 
                     </Box>
 
-                    <Button type="submit" color="primary" >
+                    <Button type="submit" color="primary" disabled = {loading}>
                         Sign Up
                     </Button>
 

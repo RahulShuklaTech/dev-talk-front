@@ -1,7 +1,7 @@
 import React from 'react'
-import { Stack, HStack, VStack, Box, Button } from "@chakra-ui/react"
+import {  HStack, Box, Button } from "@chakra-ui/react"
 import { Heading } from "@chakra-ui/react"
-import { Flex, Spacer } from "@chakra-ui/react"
+import { Spacer } from "@chakra-ui/react"
 import { useHistory, useLocation } from 'react-router-dom'
 
 export const Nav = () => {

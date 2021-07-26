@@ -10,7 +10,6 @@ import {
 
 import { Input } from "@chakra-ui/react"
 import { Link, useHistory } from 'react-router-dom'
-import { Nav } from './Nav'
 
 
 
@@ -97,7 +96,7 @@ export const Login = () => {
                             />
                         </FormControl>
                     </Box>
-                    <Button type="submit" color="primary" >
+                    <Button type="submit" color="primary" disabled = {loading}>
                        Login
                     </Button>
                     
