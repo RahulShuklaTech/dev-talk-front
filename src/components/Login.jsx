@@ -9,7 +9,8 @@ import {
 } from "@chakra-ui/react"
 
 import { Input } from "@chakra-ui/react"
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { Nav } from './Nav'
 
 
 
@@ -19,7 +20,10 @@ export const Login = () => {
     const [loading, setLoading] = useState(false);
     const [username,setUsername] = useState('');   
     const [password,setPassword] = useState(''); 
+    
+    const history = useHistory();
     const loginUrl = 'http://localhost:3300/auth/login';
+
 
     const handleSubmit = async (event) => {
         setLoading(true);
@@ -48,15 +52,19 @@ export const Login = () => {
         console.log(json);
         
         setLoading(false);
-        console.log("login success")
+        history.push({
+            pathname: '/feed',
+            state: {username}
+        })
 
     }
 
     return (
-        <Container>
+        <Container maxW="container.xl" border="2px solid black"  >
             <Heading as="h2" size="2xl">
                 DevTalk
             </Heading>
+           
             <form onSubmit={handleSubmit}  >
                 <VStack
                     divider={<StackDivider borderColor="gray.200" />}
