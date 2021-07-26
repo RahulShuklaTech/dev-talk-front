@@ -23,7 +23,7 @@ export const Signup = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const history = useHistory();
     const [loading, setLoading] = useState(false);
-    const signUpUrl = 'http://localhost:3300/auth/signup';
+    const signUpUrl = 'https://dev-talks-1.herokuapp.com/auth/signup';
 
 
     const validationSchema = Yup.object({
