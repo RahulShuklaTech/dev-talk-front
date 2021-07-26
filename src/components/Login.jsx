@@ -21,7 +21,7 @@ export const Login = () => {
     const [password,setPassword] = useState(''); 
     
     const history = useHistory();
-    const loginUrl = 'http://localhost:3300/auth/login';
+    const loginUrl = 'https://dev-talks-1.herokuapp.com/auth/login';
 
 
     const handleSubmit = async (event) => {
