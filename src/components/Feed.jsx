@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { AddPostForm } from './AddPostForm'
 import { Nav } from './Nav'
 import { Post } from './Post'
-import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react"
+import { SkeletonText } from "@chakra-ui/react"
 
 
 
