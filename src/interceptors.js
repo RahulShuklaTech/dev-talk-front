@@ -7,7 +7,8 @@ const getNewToken = async () => {
 } 
 export default function setupInterceptors(history) {
     console.log("i came here")
-    axios.defaults.baseURL = "http://localhost:3300/";
+    axios.defaults.baseURL = "https://dev-talks-1.herokuapp.com/"
+    //"http://localhost:3300/";
 
     axios.interceptors.request.use(
         function (req) {
