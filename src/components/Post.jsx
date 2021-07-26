@@ -2,14 +2,14 @@ import { Box, HStack, Text } from '@chakra-ui/react'
 import React from 'react'
 // import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react"
 import { Image } from "@chakra-ui/react"
-import { Badge } from "@chakra-ui/react"
+// import { Badge } from "@chakra-ui/react"
 import axios from 'axios'
 
 export const Post = ({ data,username,userId }) => {
 
     const likePhoto = "./thumbs-up.svg"
     const [postData, setPostData] = React.useState(data);
-    const [loading, setLoading] = React.useState(false); 
+    // const [loading, setLoading] = React.useState(false); 
     let color = "twitter.500"
    
     const handleLike = async (post) => {
@@ -36,7 +36,7 @@ export const Post = ({ data,username,userId }) => {
                             alt="thumbs up"
                             boxSize="20px"
                             cursor="pointer"
-                            onClick={() => handleLike(postData._id)}
+                            onClick={() => handleLike(postData._id,setPostData)}
                             bg = {postData.likes.includes(userId) ? color : ""}
                             borderRadius="50%"
                             padding="2px"

@@ -3,7 +3,7 @@ import {  HStack, Box, Button } from "@chakra-ui/react"
 import { Heading } from "@chakra-ui/react"
 import { Spacer } from "@chakra-ui/react"
 import { useHistory, useLocation } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 
 export const Nav = () => {
     const location = useLocation();

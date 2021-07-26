@@ -16,7 +16,7 @@ export const Profile = () => {
     const { username } = location.state || "";
     const history = useHistory();
     
-    const [name, setName] = React.useState('');
+    // const [name, setName] = React.useState('');
     const [data, setData] = React.useState({});
 
     console.log("username", username);
@@ -49,7 +49,7 @@ export const Profile = () => {
 
     useEffect(() => {
         getProfileData()
-        
+      // eslint-disable-next-line  
     }, [])
 
 
