@@ -84,7 +84,7 @@ export const Feed = () => {
                 <Container display="flex" minWidth="80%" minHeight="50px" my={10} mx = {10}>
 
                     <Container minWidth="70%" >
-                        <Heading size="lg" color="red" my={5}>
+                        <Heading size="lg" color="white" bg = "twitter.500" padding={3} my={5}>
                             {username}'s Feed
                         </Heading>
                         {
