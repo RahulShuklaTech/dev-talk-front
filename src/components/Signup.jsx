@@ -227,7 +227,7 @@ export const Signup = () => {
 
                     </Box>
 
-                    <Button type="submit" color="primary" >
+                    <Button type="submit" color="primary" disabled = {loading}>
                         Sign Up
                     </Button>
 

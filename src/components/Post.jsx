@@ -19,9 +19,10 @@ export const Post = ({ data, username, userId, like }) => {
     let color = "twitter.500"
 
     const handleLike = async (post) => {
+        setLoading(true)
         const response = await axios.post("post/like", { postId: post })
         setPostData(response.data.message)
-
+        setLoading(false)
     }
 
     const handleProfile = async () => {
@@ -31,7 +32,7 @@ export const Post = ({ data, username, userId, like }) => {
         })
 
     }
-
+    if(loading){}
 
     return (
         <Box p={4} boxShadow="1px 1px 4px 1px lightgrey" borderRadius="10px" minW="15rem" maxW="30rem" my={5}>
