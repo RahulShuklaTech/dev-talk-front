@@ -11,7 +11,8 @@ export const Nav = () => {
     const {username} = location.state
 
     const handleSignOut = async () => {
-        const url = "http://localhost:3300/auth/logout"
+        const url = 'https://dev-talks-1.herokuapp.com/auth/signup';
+        //"http://localhost:7524/auth/logout"
         const response = await fetch(url, {
             "method": "POST",
             "headers": {
@@ -21,6 +22,10 @@ export const Nav = () => {
         })
         if (response.status === 200) {
             history.push("/")
+            let token = localStorage.getItem("token")
+            if(token) localStorage.removeItem("token")
+            let refreshToken = localStorage.getItem("refreshToken")
+            if(refreshToken) localStorage.removeItem("refreshToken")
         }else{
             alert(response)
         }
@@ -42,7 +47,7 @@ export const Nav = () => {
     return (
         <HStack spacing="24px" width="100%" marginY = {1}>
 
-            <Box >
+            <Box onClick = {() => history.goBack()} >
                 <Heading>DevTalk</Heading>
 
             </Box>
