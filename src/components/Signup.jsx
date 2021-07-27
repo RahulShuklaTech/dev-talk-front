@@ -24,6 +24,8 @@ export const Signup = () => {
     const history = useHistory();
     const [loading, setLoading] = useState(false);
     const signUpUrl = 'https://dev-talks-1.herokuapp.com/auth/signup';
+    //
+    //"http://localhost:7524/auth/signup"
 
 
     const validationSchema = Yup.object({
@@ -225,7 +227,7 @@ export const Signup = () => {
 
                     </Box>
 
-                    <Button type="submit" color="primary" disabled = {loading}>
+                    <Button type="submit" color="primary" >
                         Sign Up
                     </Button>
 

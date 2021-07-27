@@ -22,6 +22,8 @@ export const Login = () => {
     
     const history = useHistory();
     const loginUrl = 'https://dev-talks-1.herokuapp.com/auth/login';
+    //"http://localhost:7524/auth/login"
+    //'https://dev-talks-1.herokuapp.com/auth/login';
 
 
     const handleSubmit = async (event) => {

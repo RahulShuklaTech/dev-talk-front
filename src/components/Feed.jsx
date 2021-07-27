@@ -88,7 +88,7 @@ export const Feed = () => {
                             {username}'s Feed
                         </Heading>
                         {
-                            posts.map((post, index) => <Post data={post} key={index} username = {username} userId = {userId} />)
+                            posts.map((post, index) => <Post data={post} key={index*Math.random()} username = {username} userId = {userId} like = {"thumbs-up.svg"} />)
                         }
 
                     </Container>

@@ -1,4 +1,5 @@
-import { Route, Switch, useHistory} from 'react-router-dom';
+import { Container } from '@chakra-ui/react';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import { Feed } from './components/Feed';
 import { Profile } from './components/Profile';
 import setupInterceptors from './interceptors';
@@ -12,15 +13,16 @@ function App() {
   const history = useHistory();
   setupInterceptors(history);
   return (
-
-    <div className="App">
+    
+    <Container centerContent minWidth="100%" minHeight="100vh" >
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/feed" component={Feed} />
-        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/profile/" component={Profile} />
+        <Route exact path="/profile/:username" component={Profile} />
       </Switch>
-    </div>
+    </Container>
 
   );
 }

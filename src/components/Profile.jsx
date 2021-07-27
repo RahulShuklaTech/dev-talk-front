@@ -111,7 +111,7 @@ export const Profile = () => {
                     </Heading>
                     {
                         data.posts.length === 0 ? <Text>No user posts.</Text> :
-                            data.posts.map((post, index) => <Post data={post} key={index} username={username} />)
+                            data.posts.map((post, index) => <Post data={post} key={index} username={username} like = {"trash.svg"}/>)
                     }
 
 
