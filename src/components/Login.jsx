@@ -49,6 +49,7 @@ export const Login = () => {
 
         localStorage.setItem('token', json.token);
         localStorage.setItem('refreshToken', json.refreshToken);
+        localStorage.setItem('username', username);
 
         console.log(json);
         

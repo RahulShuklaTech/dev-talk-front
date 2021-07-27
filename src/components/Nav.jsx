@@ -2,16 +2,17 @@ import React from 'react'
 import {  HStack, Box, Button } from "@chakra-ui/react"
 import { Heading } from "@chakra-ui/react"
 import { Spacer } from "@chakra-ui/react"
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 // import axios from 'axios'
 
 export const Nav = () => {
-    const location = useLocation();
+    // const location = useLocation();
     const history = useHistory();
-    const {username} = location.state
+    const username = localStorage.getItem('username');
+    console.log("username", username);
 
     const handleSignOut = async () => {
-        const url = 'https://dev-talks-1.herokuapp.com/auth/signup';
+        const url = 'https://dev-talks-1.herokuapp.com/auth/logout';
         //"http://localhost:7524/auth/logout"
         const response = await fetch(url, {
             "method": "POST",
@@ -26,6 +27,7 @@ export const Nav = () => {
             if(token) localStorage.removeItem("token")
             let refreshToken = localStorage.getItem("refreshToken")
             if(refreshToken) localStorage.removeItem("refreshToken")
+            localStorage.removeItem("username")
         }else{
             alert(response)
         }
