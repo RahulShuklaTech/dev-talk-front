@@ -50,6 +50,7 @@ export const Login = () => {
         localStorage.setItem('token', json.token);
         localStorage.setItem('refreshToken', json.refreshToken);
         localStorage.setItem('username', username);
+        localStorage.setItem('userId',json.userId);
 
         console.log(json);
         

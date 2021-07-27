@@ -28,6 +28,7 @@ export const Nav = () => {
             let refreshToken = localStorage.getItem("refreshToken")
             if(refreshToken) localStorage.removeItem("refreshToken")
             localStorage.removeItem("username")
+            localStorage.removeItem("userId")
         }else{
             alert(response)
         }

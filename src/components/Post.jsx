@@ -16,8 +16,8 @@ export const Post = ({ data, username, userId, like }) => {
     const imgURL = 'https://dev-talks-1.herokuapp.com/uploads/';
     //"http://localhost:7524/uploads/"
     const [loading, setLoading] = React.useState(false); 
-    let color = "twitter.500"
-
+    let color = "gray.300"
+    let liked = postData.likes.includes(userId)
     const handleLike = async (post) => {
         setLoading(true)
         const response = await axios.post("post/like", { postId: post })
@@ -58,14 +58,16 @@ export const Post = ({ data, username, userId, like }) => {
                     <Image
                         src= {likePhoto}
                         alt="thumbs up"
-                        boxSize="20px"
+                        boxSize="2rem"
                         cursor="pointer"
                         onClick={() => handleLike(postData._id)}
-                        bg={postData.likes.includes(userId) ? color : ""}
+                        bg={ liked? color : ""}
                         borderRadius="50%"
-                        padding="2px"
+                        padding="5px"
 
                     />
+                    {/* <Spacer size=".3rem" /> */}
+                    {liked && <Text as = "span" fontSize="small">you like this</Text>}
                 </HStack>
 
 

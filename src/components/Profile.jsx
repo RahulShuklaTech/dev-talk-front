@@ -13,10 +13,11 @@ import { SkeletonText } from "@chakra-ui/react"
 export const Profile = () => {
     const location = useLocation();
     const [loading, setLoading] = React.useState(true);
-    const { username } = location.state || "";
+    const { username,userId } = location.state || "";
     const history = useHistory();
     
-    // const [name, setName] = React.useState('');
+    console.log("userId",userId);
+        // const [name, setName] = React.useState('');
     const [data, setData] = React.useState({});
 
     console.log("username", username);

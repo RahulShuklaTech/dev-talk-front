@@ -17,13 +17,11 @@ export const Feed = () => {
     const [suggestions, setSuggestions] = React.useState([]);
     const { username, userId } = location.state || "";
     const history = useHistory();
-    console.log(username)
 
     const getData = async () => {
 
         try {
             setLoading(true);
-            // await new Promise (resolve => setTimeout(resolve, 1000));
             const postsResponse = await axios.get("post/")
             const suggestionsResponse = await axios.get("follow/")
             const postsData = await postsResponse.data;
@@ -52,12 +50,11 @@ export const Feed = () => {
         e.preventDefault();
         let followResponse = await axios.post("follow/" + suggestions[index].username, {});
         if (followResponse.status) {
-            console.log("following", suggestions[index].username);
+            
             setSuggestions(suggestions.filter((s) => s.username !== suggestions[index].username));
             getData();
         }
-        console.log("followResponse", followResponse);
-        console.log(e.target, index);
+        
     }
 
     const onClose = () => {
@@ -74,8 +71,7 @@ export const Feed = () => {
     }
     
 
-    if (loading) return <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin ="5rem auto"></SkeletonText>
-    console.log("_________________",posts)
+    if (loading && posts.length === 0) return <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin ="5rem auto"></SkeletonText>
     return (
         <Container centerContent minWidth="100%" minHeight="100vh" position="relative">
             <CSSReset />
