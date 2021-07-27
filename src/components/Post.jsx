@@ -12,7 +12,6 @@ export const Post = ({ data,userId}) => {
     const likePhoto = "https://determined-pike-9e5056.netlify.app/thumbs-up.svg"
     const [postData, setPostData] = React.useState(data);
     const imgURL = 'https://dev-talks-1.herokuapp.com/uploads/';
-    const defImg = "https://image.flaticon.com/icons/png/512/147/147144.png"
     const [loading, setLoading] = React.useState(false); 
     let color = "gray.300"
     let liked = postData.likes.includes(userId)
@@ -43,8 +42,9 @@ export const Post = ({ data,userId}) => {
     return (
         <Box p={4} boxShadow="1px 1px 4px 1px lightgrey" borderRadius="10px" minW="15rem" maxW="30rem" my={5}>
             <Box onClick={handleProfile} cursor="pointer" display= "flex" marginY= "3" >
+                {console.log("--------------------",postData.owner.filename)}
                 <Image
-                    src={imgURL + postData.owner.username + ".png" || defImg} 
+                    src={imgURL + postData.owner.filename} 
                     boxSize="50px"
                     alt="avatar"
                     borderRadius="50%"

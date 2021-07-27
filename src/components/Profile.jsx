@@ -17,9 +17,6 @@ export const Profile = () => {
     const history = useHistory();
     const loggedInUser = localStorage.getItem('username');
     const userId = localStorage.getItem('userId');
-    console.log("loggedInUser", loggedInUser);
-    console.log("userId",userId);
-        // const [name, setName] = React.useState('');
     const [data, setData] = React.useState({});
 
     console.log("username", username);
@@ -89,7 +86,6 @@ export const Profile = () => {
                             @{username}
                         </Text>
                         <Spacer my={2} width={5} />
-                        {/* { loggedInUser !== username && data.followers.includes(userId) && <Button bg="twitter.500" mt={2} color="white" onClick = {handleFollow}>Follow</Button>} */}
                         { loggedInUser !== username && data.followers.includes(userId) && <Button colorScheme="red" mt={2} color="white" onClick = {handleFollow}>Unfollow</Button>}
                         { loggedInUser !== username && !data.followers.includes(userId) && <Button bg="twitter.500" mt={2} color="white" onClick = {handleFollow}>Follow</Button>}
                     </Box>
@@ -106,7 +102,6 @@ export const Profile = () => {
                             {data.followers.length + " "}followers
                         </Text>
                     </Box>
-                    {/* <Button onClick={(e) => handleFollow(e, index)}>Follow</Button></Box> */}
                     
                 </Box>
                 <Heading size="lg" color="red" my={5}>
