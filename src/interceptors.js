@@ -6,7 +6,6 @@ const getNewToken = async () => {
     localStorage.setItem('token',response.data.token)
 } 
 export default function setupInterceptors(history) {
-    console.log("i came here")
     axios.defaults.baseURL = "https://dev-talks-1.herokuapp.com/"
     // "http://localhost:7524/"
     //
@@ -25,7 +24,6 @@ export default function setupInterceptors(history) {
 
         function (error) {
             console.log("Error faced", error.message)
-
             return Promise.reject(error)
         }
     )
@@ -38,8 +36,7 @@ export default function setupInterceptors(history) {
 
         async function (error) {
             const originalRequest = error.config;
-            console.log("response error ",error.message)
-            console.log("Error faced", error.response.status);
+            
             let { status } = error.response;
             if(status === 403 && localStorage.getItem('token') && !originalRequest._retry){
                 originalRequest._retry = true;

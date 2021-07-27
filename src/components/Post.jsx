@@ -1,33 +1,39 @@
 import { Box, HStack, Text } from '@chakra-ui/react'
 import React from 'react'
-// import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react"
 import { Image } from "@chakra-ui/react"
 import { Badge } from "@chakra-ui/react"
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
 
-export const Post = ({ data, username, userId, like }) => {
+export const Post = ({ data,userId}) => {
 
     const history = useHistory()
     const likePhoto = "https://determined-pike-9e5056.netlify.app/thumbs-up.svg"
-    //"http://localhost:3000/thumbs-up.svg"
     const [postData, setPostData] = React.useState(data);
     const imgURL = 'https://dev-talks-1.herokuapp.com/uploads/';
-    //"http://localhost:7524/uploads/"
+    const defImg = "https://image.flaticon.com/icons/png/512/147/147144.png"
     const [loading, setLoading] = React.useState(false); 
     let color = "gray.300"
     let liked = postData.likes.includes(userId)
+
+
     const handleLike = async (post) => {
         setLoading(true)
-        const response = await axios.post("post/like", { postId: post })
-        setPostData(response.data.message)
+        let copy =  {...postData}
+        if(copy.likes.includes(userId)){
+            copy.likes.splice(copy.likes.indexOf(userId),1)
+        }else{
+            copy.likes.push(userId)
+        }
+        setPostData(copy)
+        await axios.post("post/like", { postId: post })
         setLoading(false)
     }
 
     const handleProfile = async () => {
         history.push({
-            pathname: "/profile/",
+            pathname: "/profile/"+postData.owner.username,
             state: { username: postData.owner.username }
         })
 
@@ -38,7 +44,7 @@ export const Post = ({ data, username, userId, like }) => {
         <Box p={4} boxShadow="1px 1px 4px 1px lightgrey" borderRadius="10px" minW="15rem" maxW="30rem" my={5}>
             <Box onClick={handleProfile} cursor="pointer" display= "flex" marginY= "3" >
                 <Image
-                    src={imgURL + postData.owner.username + ".png"}
+                    src={imgURL + postData.owner.username + ".png" || defImg} 
                     boxSize="50px"
                     alt="avatar"
                     borderRadius="50%"
@@ -51,8 +57,7 @@ export const Post = ({ data, username, userId, like }) => {
                 <Text fontSize="2xl">{data.content}</Text>
                 <Text fontSize="sm" color="gray.500">{`Posted on: ${new Date(data.createdAt).toLocaleString()}`}</Text>
             </Box>
-            {console.log("like",like)}
-            <HStack justify="space-between" align="center" minW="100%">
+            <HStack display="flex" justify="flex-start" align="flex-end" minW="100%" minHeight = "fit-content">
                 <HStack align="flex-start">
                     <Badge p = {1}><Text>{`${postData.likes.length} likes`}</Text></Badge>
                     <Image
@@ -64,13 +69,9 @@ export const Post = ({ data, username, userId, like }) => {
                         bg={ liked? color : ""}
                         borderRadius="50%"
                         padding="5px"
-
                     />
-                    {/* <Spacer size=".3rem" /> */}
                     {liked && <Text as = "span" fontSize="small">you like this</Text>}
                 </HStack>
-
-
             </HStack>
         </Box>
     )

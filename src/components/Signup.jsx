@@ -17,17 +17,11 @@ import { Spacer } from "@chakra-ui/react"
 
 
 export const Signup = () => {
-
-
-
     const [errorMessage, setErrorMessage] = useState('');
     const history = useHistory();
     const [loading, setLoading] = useState(false);
     const signUpUrl = 'https://dev-talks-1.herokuapp.com/auth/signup';
-    //
     //"http://localhost:7524/auth/signup"
-
-
     const validationSchema = Yup.object({
         name: Yup.string().required('Name is required'),
         username: Yup.string().required(`Required`).min(5, 'Must be longer than 5 characters')
@@ -50,9 +44,7 @@ export const Signup = () => {
 
 
     const handleError = (val) => {
-        console.log("error", val);
         switch (val) {
-
             case 'username':
                 setErrorMessage('Username already taken');
                 break;
@@ -64,8 +56,6 @@ export const Signup = () => {
                 break;
             default:
                 setErrorMessage('Unknown error');
-
-
         }
     }
 
@@ -83,20 +73,17 @@ export const Signup = () => {
         })
         if (response.status !== 201) {
             let data = await response.json();
-            console.log(data);
-            // data.code ? handleError(data.code) :
             handleError(Object.keys(data.keyPattern)[0]);
-
             setLoading(false);
             return;
         }
-         await response.json();
+        await response.json();
 
         setErrorMessage("");
         setLoading(false);
         history.push(`/`);
 
-        console.log("sfdsdfsdf", values)
+       
     }
 
     const formik = useFormik({
@@ -123,7 +110,7 @@ export const Signup = () => {
                         DevTalk
                     </Heading>
                     <Heading as="h2" size="xl" marginBottom="2rem">
-                        Sign Up 
+                        Sign Up
                     </Heading>
                     <Box bg="white" w="100%" py={3} px={5} marginY={4} color="black">
 
@@ -145,7 +132,6 @@ export const Signup = () => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 autoComplete="off"
-                            //FormErrorMessage={errorMessage.username}
                             />
                             {formik.errors.username && formik.touched.username && <small>{formik.errors.username}</small>}
                         </FormControl>
@@ -156,7 +142,6 @@ export const Signup = () => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 autoComplete="off"
-                            //FormErrorMessage={errorMessage.email}
                             />
                             {formik.errors.email && formik.touched.email && <small>{formik.errors.email}</small>}
 
@@ -170,7 +155,6 @@ export const Signup = () => {
                                 onBlur={formik.handleBlur}
                                 autoComplete="off"
                                 placeholder="Password"
-                            //FormErrorMessage={errorMessage.password}
                             />
                             {formik.errors.password && formik.touched.password && <small>{formik.errors.password}</small>}
                         </FormControl>
@@ -181,7 +165,6 @@ export const Signup = () => {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 autoComplete="off"
-                            //FormErrorMessage={errorMessage.confirmPassword}
                             />
                             {formik.errors.confirmPassword && formik.touched.confirmPassword && <small>{formik.errors.confirmPassword}</small>}
                         </FormControl>
@@ -191,46 +174,12 @@ export const Signup = () => {
                             type="file"
                             name="photo"
                             onChange={(e) => formik.setFieldValue("avatar", e.currentTarget.files[0])}
-                            // style={{ display: 'none', }}
                         />
 
-                        {/* <label htmlFor="photo" name="photo">
-                            <Box
-
-                                lineHeight="1.5rem"
-                                transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
-                                border="1px"
-                                marginTop="2px"
-                                px="8px"
-                                py="8px"
-                                width="fit-content"
-                                borderRadius="2px"
-                                fontSize="14px"
-                                fontWeight="semibold"
-                                backgroundColor="twitter.500"
-                                borderColor="#ccd0d5"
-                                color="white"
-                                _hover={{ bg: "#ebedf0", color: "#000", borderColor: "#ebedf0" }}
-                                _active={{
-                                    bg: "#dddfe2",
-                                    color: "#000",
-                                    transform: "scale(0.98)",
-                                    borderColor: "#bec3c9",
-                                }}
-                                _focus={{
-                                    boxShadow:
-                                        "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)",
-                                }}>Upload Avatar</Box>
-
-                            {formik.values.file?.name}
-                        </label> */}
-
                     </Box>
-
-                    <Button type="submit" color="primary" disabled = {loading}>
+                    <Button type="submit" color="primary" disabled={loading}>
                         Sign Up
                     </Button>
-
                     <Text fontSize="md">Have an account <Link to="/"><Text color="twitter.500" as="span">Login</Text></Link></Text>
                     <Box color="red" p={3}>{errorMessage}</Box>
                 </VStack>
