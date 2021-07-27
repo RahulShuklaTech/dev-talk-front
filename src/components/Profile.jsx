@@ -19,7 +19,6 @@ export const Profile = () => {
     const userId = localStorage.getItem('userId');
     const [data, setData] = React.useState({});
 
-    console.log("username", username);
     if(username === undefined) {
         history.push("/");
     }
@@ -41,7 +40,6 @@ export const Profile = () => {
         if (followResponse.status) {
             getProfileData();
         }
-        console.log("followResponse", followResponse);
         
     }
 
@@ -54,16 +52,12 @@ export const Profile = () => {
   
     if (loading) return <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin="5rem auto"></SkeletonText>
 
-
-    
-
-
     return (
         <Container  maxWidth="80%" minHeight="100vh" >
             <CSSReset />
             <Nav username={location.state.username} />
 
-            <Container minWidth= "100%" minHeight="50px" my={10}>
+           {!loading && <Container minWidth= "100%" minHeight="50px" my={10}>
                 <Box
                     p={4}
                     boxShadow="1px 1px 4px 1px lightgrey"
@@ -112,16 +106,7 @@ export const Profile = () => {
                             data.posts.map((post, index) => <Post data={post} key={index} username={username} like = {"trash.svg"}/>)
                     }
 
-
-                <Container minWidth="70%" >
-                    
-                </Container>
-
-
-
-
-
-            </Container>
+            </Container>}
 
 
 

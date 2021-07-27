@@ -22,7 +22,6 @@ const sendData = async (e, value, setPosts, setIsOpen) => {
     if (response.status === 200) {
         setPosts(posts => posts.concat(response.data.message))
     }
-    console.log("response", response)
     setIsOpen(state => !state)
 
 }

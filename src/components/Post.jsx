@@ -42,7 +42,6 @@ export const Post = ({ data,userId}) => {
     return (
         <Box p={4} boxShadow="1px 1px 4px 1px lightgrey" borderRadius="10px" minW="15rem" maxW="30rem" my={5}>
             <Box onClick={handleProfile} cursor="pointer" display= "flex" marginY= "3" >
-                {console.log("--------------------",postData.owner.filename)}
                 <Image
                     src={imgURL + postData.owner.filename} 
                     boxSize="50px"

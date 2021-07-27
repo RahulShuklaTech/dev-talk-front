@@ -2,15 +2,11 @@ import axios from "axios";
 
 const getNewToken = async () => {
     const response = await axios.post('/auth/token',{'refreshToken': localStorage.getItem('refreshToken')}) 
-    console.log("getnewtoken",response.data.token)
     localStorage.setItem('token',response.data.token)
 } 
 export default function setupInterceptors(history) {
     axios.defaults.baseURL = "https://dev-talks-1.herokuapp.com/"
-    // "http://localhost:7524/"
-    //
-    //"http://localhost:3300/";
-
+    
     axios.interceptors.request.use(
         function (req) {
             let token = localStorage.getItem("token");

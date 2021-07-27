@@ -39,7 +39,6 @@ export const Login = () => {
         })
 
         if(response.status !== 201){
-            console.log(response,"response")
             setErrorMessage("Invalid username or password");
             setLoading(false);
             return;
@@ -52,8 +51,6 @@ export const Login = () => {
         localStorage.setItem('username', username);
         localStorage.setItem('userId',json.userId);
 
-        console.log(json);
-        
         setLoading(false);
         history.push({
             pathname: '/feed',
