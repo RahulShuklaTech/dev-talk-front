@@ -47,13 +47,15 @@ The add post component lets the user add a post,
 The profile page gives you posts from the selected user.
 It also allows you to follow or unfollow a user
 
+### User Profile
 
 ![](./images/userprofile.png)
 
-
+### Unfollowed Other User Profile
 ![](./images/otheruserprofile.png)
 
 
+### Followed Other User Profile
 ![](./images/followeduser.png)
 
 
