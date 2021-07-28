@@ -76,7 +76,7 @@ export const Feed = () => {
             <CSSReset />
             <Nav username={location.state.username} />
             {(loading && posts.length === 0) && <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin="5rem auto"></SkeletonText>}
-            {(!loading && posts.length === 0) && <Box p={5} my={10} bg = "gray.400"> <Heading fontSize = "md"> Welcome to DevTalk</Heading><Text>Start By Adding a Post or Follow other users. </Text></Box>}
+            {(!loading && posts.length === 0) && <Box p={5} my={10} bg = "gray.400"> <Heading fontSize = "md"> Welcome to DevTalk</Heading><Text>Start By Adding a Post. </Text></Box>}
             {(!loading && posts.length > 0 ) && <Container display="flex" minWidth="100%" minHeight="50px" my={10} p={0} >
                 <CSSReset />
                 <Container minWidth="70%" >
