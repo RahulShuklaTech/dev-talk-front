@@ -56,6 +56,9 @@ export const Feed = () => {
 
     }
 
+
+
+
     const onClose = () => {
         setIsOpen(false);
     }
