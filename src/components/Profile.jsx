@@ -43,6 +43,16 @@ export const Profile = () => {
         
     }
 
+    const handleDelete = async (index,postId) => { 
+        
+        let copy =  {...data}
+        copy.posts.splice(index, 1);
+        setData(copy)
+        await axios.delete(`post/${postId}`)
+        
+    }
+
+
     useEffect(() => {
         getProfileData()
       // eslint-disable-next-line  
@@ -99,7 +109,7 @@ export const Profile = () => {
                     </Heading>
                     {
                         data.posts.length === 0 ? <Text>No user posts.</Text> :
-                            data.posts.map((post, index) => <Post data={post} key={index} username={username} like = {"trash.svg"}/>)
+                            data.posts.map((post, index) => <Post data={post} key={index} username={username} index={index} like = {"trash.svg"} handleDelete = {handleDelete}/>)
                     }
 
             </Container>}
