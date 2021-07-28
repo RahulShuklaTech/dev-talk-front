@@ -48,15 +48,11 @@ export const Profile = () => {
       // eslint-disable-next-line  
     }, [])
 
-
-  
-    if (loading) return <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin="5rem auto"></SkeletonText>
-
     return (
         <Container  maxWidth="80%" minHeight="100vh" >
             <CSSReset />
             <Nav username={location.state.username} />
-
+            {loading && <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin="5rem auto"></SkeletonText>}
            {!loading && <Container minWidth= "100%" minHeight="50px" my={10}>
                 <Box
                     p={4}

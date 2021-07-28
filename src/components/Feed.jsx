@@ -1,4 +1,4 @@
-import {  Button, Container, CSSReset, Heading, Text } from '@chakra-ui/react'
+import {  Box, Button, Container, CSSReset, Heading, Text } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
@@ -76,7 +76,8 @@ export const Feed = () => {
             <CSSReset />
             <Nav username={location.state.username} />
             {(loading && posts.length === 0) && <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin="5rem auto"></SkeletonText>}
-             <Container display="flex" minWidth="100%" minHeight="50px" my={10} p={0}  >
+            {(!loading && posts.length === 0) && <Box p={5} my={10} bg = "gray.400"> <Heading fontSize = "md"> Welcome to DevTalk</Heading><Text>Start By Adding a Post or Follow other users. </Text></Box>}
+            {(!loading && posts.length > 0 ) && <Container display="flex" minWidth="100%" minHeight="50px" my={10} p={0} >
                 <CSSReset />
                 <Container minWidth="70%" >
                     <Heading size="lg" color="white" bg="twitter.500" padding={3} my={5} maxW = "fit-content">
@@ -96,10 +97,9 @@ export const Feed = () => {
                             )
                     }
                 </Container>
-            </Container>
+            </Container>}
 
-            <Button onClick={handleClick} position="fixed" right={"10%"} bottom={10} borderRadius="50%" height="2.5rem" width="2.5rem" bgColor="twitter.500" color="white" padding="1.5rem" fontSize="2xl" zIndex="1000">+</Button>
-
+            {!loading && <Button onClick={handleClick} position="fixed" right={"10%"} bottom={10} borderRadius="50%" height="2.5rem" width="2.5rem" bgColor="twitter.500" color="white" padding="1.5rem" fontSize="2xl" zIndex="1000">+</Button>}
             <AddPostForm isOpen={isOpen} onClose={onClose} setPosts={setPosts} setIsOpen={setIsOpen} />
         </Container>
     )
