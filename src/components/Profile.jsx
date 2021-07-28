@@ -23,6 +23,7 @@ export const Profile = () => {
         history.push("/");
     }
 
+  
 
     const getProfileData = async () => {
         setLoading(true);
@@ -34,13 +35,12 @@ export const Profile = () => {
     }
 
 
-    const handleFollow = async (e, index) => {
+    const handleFollow = async (e) => {
         e.preventDefault();
-        let followResponse = await axios.post("follow/" +username, {});
-        if (followResponse.status) {
-            getProfileData();
-        }
-        
+        let copy = JSON.parse(JSON.stringify(data));
+        copy.followers.includes(userId) ? copy.followers.splice(copy.followers.indexOf(userId), 1) : copy.followers.push(userId);
+        setData(copy)
+        axios.post("follow/" +username, {});
     }
 
     const handleDelete = async (index,postId) => { 
@@ -61,7 +61,7 @@ export const Profile = () => {
     return (
         <Container  maxWidth="80%" minHeight="100vh" >
             <CSSReset />
-            <Nav username={location.state.username} />
+            <Nav username={location.state.username} showFeed = {true}/>
             {loading && <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin="5rem auto"></SkeletonText>}
            {!loading && <Container minWidth= "100%" minHeight="50px" my={10}>
                 <Box
@@ -81,6 +81,7 @@ export const Profile = () => {
                     </Text>
                     <Box display="flex">
                         <Text
+                            textTransform="capitalize"
                             fontSize="md"
                             my={2}>
                             @{username}
@@ -104,7 +105,7 @@ export const Profile = () => {
                     </Box>
                     
                 </Box>
-                <Heading size="lg" color="red" my={5}>
+                <Heading textTransform="capitalize" size="lg" color="red" my={5}>
                         {username}'s posts
                     </Heading>
                     {

@@ -1,4 +1,4 @@
-import {  Box, Button, Container, CSSReset, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Container, CSSReset, Heading, Text } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
@@ -38,6 +38,17 @@ export const Feed = () => {
     }
 
 
+    const getSuggestions = async () => {
+        const postsResponse = await axios.get("post/")
+        const suggestionsResponse = await axios.get("follow/")
+        const postsData = await postsResponse.data;
+        const suggestionsData = await suggestionsResponse.data;
+        setPosts(postsData.message);
+        setSuggestions(suggestionsData.message);
+
+    }
+
+
     const handleClick = () => {
 
         setIsOpen(!isOpen);
@@ -46,12 +57,12 @@ export const Feed = () => {
 
     const handleFollow = async (e, index) => {
         e.preventDefault();
-        console.log("index", index)
+        setSuggestions(suggestions.filter((s) => s.username !== suggestions[index].username));
         let followResponse = await axios.post("follow/" + suggestions[index].username, {});
-        if (followResponse.status) {
 
-            setSuggestions(suggestions.filter((s) => s.username !== suggestions[index].username));
-            getData();
+        if (followResponse.status) {
+            // getData(); 
+            getSuggestions();
         }
 
     }
@@ -75,23 +86,27 @@ export const Feed = () => {
 
     // if (loading && posts.length === 0) return <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin="5rem auto"></SkeletonText>
     return (
-        <Container maxWidth="80%" minHeight="100vh" position="relative" p={0}>
+        <Container maxWidth="80%" minHeight="100vh" position="relative" p={0} >
             <CSSReset />
             <Nav username={location.state.username} />
             {(loading && posts.length === 0) && <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin="5rem auto"></SkeletonText>}
-            {(!loading && posts.length === 0) && <Box p={5} my={10} bg = "gray.400"> <Heading fontSize = "md"> Welcome to DevTalk</Heading><Text>Start By Adding a Post. </Text></Box>}
-            {(!loading && posts.length > 0 ) && <Container display="flex" minWidth="100%" minHeight="50px" my={10} p={0} >
+
+            {(!loading && posts.length === 0) && <Container display="flex" minWidth="100%" minHeight="50px" my={10} p={0} >
                 <CSSReset />
-                <Container minWidth="70%" >
-                    <Heading size="lg" color="white" bg="twitter.500" padding={3} my={5} maxW = "fit-content">
-                        {username}'s Feed
-                    </Heading>
-                    {
-                        posts.map((post, index) => <Post data={post} key={index * Math.random()} username={username} userId={userId} like={"thumbs-up.svg"} />)
-                    }
+                <Container minWidth="80%" p={0}>
+                    {(!loading && posts.length === 0) ?
+                        <Box p={8} maxWidth="60rem" bg="gray.100" > <Heading fontSize="3xl"> Welcome to DevTalk</Heading><Text my={10} fontSize="lg">Add a post or a follow as user to start</Text></Box>
+                        :<Box display="flex" flexDirection="column" justifyContent="center" p={5}>
+                            <Heading textTransform="capitalize" size="lg" color="white" bg="twitter.500" padding={3} my={5} maxW="fit-content">
+                                {username}'s Feed
+                            </Heading>
+                            {
+                                posts.map((post, index) => <Post data={post} key={index * Math.random()} username={username} userId={userId} like={"thumbs-up.svg"} />)
+                            }
+                        </Box>}
 
                 </Container>
-                <Container minWidth="30%" maxHeight="fit-content" p={3} backgroundColor="gray.100" borderRadius = "12px">
+                <Container minWidth="fit-content" maxHeight="fit-content" p={3} backgroundColor="gray.100" borderRadius="12px">
                     <Heading fontSize="large" my={4}> Follow other users</Heading>
                     {
                         suggestions.length === 0 ? <Text color="gray.300" fontSize="large" my={4}> No suggestions at the moment</Text> :

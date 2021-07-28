@@ -73,7 +73,7 @@ export const Post = ({ data,userId,handleDelete,index}) => {
                     />
                     {liked && <Text as = "span" fontSize="small">you like this</Text>}
                     </Box>
-                    {username === postData.owner.username && 
+                    {username === postData.owner.username && handleDelete &&
                         <Image
                         src= "https://determined-pike-9e5056.netlify.app/trash.svg"
                         alt="delete"

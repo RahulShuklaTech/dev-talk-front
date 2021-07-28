@@ -4,7 +4,7 @@ import { Heading } from "@chakra-ui/react"
 import { Spacer } from "@chakra-ui/react"
 import { useHistory } from 'react-router-dom'
 
-export const Nav = () => {
+export const Nav = ({showFeed}) => {
     const history = useHistory();
     const username = localStorage.getItem('username');
 
@@ -39,6 +39,15 @@ export const Nav = () => {
         
     }
 
+
+    const handleFeed = async () => { 
+        history.push({
+            pathname: "/feed/",
+            state: {username}
+        })
+        
+    }
+
     return (
         <HStack spacing="24px" width="100%" marginY = {1}>
 
@@ -48,6 +57,10 @@ export const Nav = () => {
             </Box>
             <Spacer />
             <HStack>
+                {showFeed &&  <Button colorScheme = "blue" onClick = {handleFeed}>Feed</Button> }
+               
+                <Spacer width="10px" />
+                
                 <Button colorScheme = "blue" onClick = {handleProfile}>Profile</Button>
                 <Spacer width="10px" />
                 <Button colorScheme = "red" onClick = {handleSignOut}>Log Out</Button>
