@@ -91,7 +91,7 @@ export const Feed = () => {
             <Nav username={location.state.username} />
             {(loading && posts.length === 0) && <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin="5rem auto"></SkeletonText>}
 
-            {(!loading && posts.length === 0) && <Container display="flex" minWidth="100%" minHeight="50px" my={10} p={0} >
+            {!loading && <Container display="flex" minWidth="100%" minHeight="50px" my={10} p={0} >
                 <CSSReset />
                 <Container minWidth="80%" p={0}>
                     {(!loading && posts.length === 0) ?
