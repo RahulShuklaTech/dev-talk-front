@@ -2,7 +2,7 @@
 import { Box, Button, Container, CSSReset, Heading, Spacer, Text } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect } from 'react'
-import { Redirect, useHistory, useLocation } from 'react-router-dom'
+import {  useHistory, useLocation } from 'react-router-dom'
 import { Nav } from './Nav'
 import { Post } from './Post'
 import { SkeletonText } from "@chakra-ui/react"

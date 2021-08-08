@@ -75,8 +75,9 @@ export const Feed = () => {
     useEffect(() => {
 
        username && getData();
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
     if(username === undefined) {
         history.push("/");
         return <DoRedirect/>
