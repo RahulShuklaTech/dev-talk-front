@@ -2,11 +2,11 @@
 import { Box, Button, Container, CSSReset, Heading, Spacer, Text } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
-
+import { Redirect, useHistory, useLocation } from 'react-router-dom'
 import { Nav } from './Nav'
 import { Post } from './Post'
 import { SkeletonText } from "@chakra-ui/react"
+import { DoRedirect } from './DoRedirect'
 
 
 
@@ -19,12 +19,8 @@ export const Profile = () => {
     const userId = localStorage.getItem('userId');
     const [data, setData] = React.useState({});
 
-    if(username === undefined) {
-        history.push("/");
-    }
 
-  
-
+ 
     const getProfileData = async () => {
         setLoading(true);
         const postsResponse = await axios.get(`/profile/${username}`)
@@ -54,23 +50,36 @@ export const Profile = () => {
 
 
     useEffect(() => {
-        getProfileData()
+
+       username && getProfileData()
       // eslint-disable-next-line  
     }, [])
+    if(username === undefined) {
+        history.push("/");
+        return <DoRedirect/>
+        
+        
+    }
+
+
 
     return (
-        <Container  maxWidth="80%" minHeight="100vh" >
+        <Container  maxWidth="80%" minHeight="100vh" p = {0} >
             <CSSReset />
             <Nav username={location.state.username} showFeed = {true}/>
             {loading && <SkeletonText mt="10" noOfLines={4} spacing="4" isLoaded={!loading} width={'xl'} margin="5rem auto"></SkeletonText>}
-           {!loading && <Container minWidth= "100%" minHeight="50px" my={10}>
+           {!loading && <Container minWidth= "100%" minHeight="50px" my={10} p = {0}>
                 <Box
                     p={4}
                     boxShadow="1px 1px 4px 1px lightgrey"
                     borderRadius="10px" minW="10rem"
                     maxW="30rem"
                     bg="white"
-                    spacing={5}>
+                    spacing={3}>
+
+                    <Box>
+
+                    </Box>
 
                     <Text
                         fontSize="1.5rem"
@@ -114,9 +123,6 @@ export const Profile = () => {
                     }
 
             </Container>}
-
-
-
 
         </Container>
     )

@@ -5,6 +5,8 @@ import { Badge } from "@chakra-ui/react"
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
+const randomNumber = () => Math.floor(Math.random() * 3) + 1;
+
 
 export const Post = ({ data,userId,handleDelete,index}) => {
 
@@ -38,7 +40,7 @@ export const Post = ({ data,userId,handleDelete,index}) => {
         })
 
     }
-
+    console.log(randomNumber());
     return (
         <Box p={4} boxShadow="1px 1px 4px 1px lightgrey" borderRadius="10px" minW="15rem" maxW="30rem" my={5}>
             <Box onClick={handleProfile} cursor="pointer" display= "flex" marginY= "3" >
@@ -48,9 +50,15 @@ export const Post = ({ data,userId,handleDelete,index}) => {
                     alt="avatar"
                     borderRadius="50%"
                     padding="2px"
-                    marginRight = "3" />
+                    marginRight = "3"
+                    fallbackSrc = {`/default/default${randomNumber()}.png`}
+                    objectFit = "cover"
 
-                <Text fontSize="md" color="twitter.500"  >@{data.owner.username}</Text>
+                     />
+                <Box display="flex" flexDirection = "column" alignItems="center" justifyContent="center">
+                    <Text fontSize="md" color="twitter.500"  >@{data.owner.username}</Text>
+                    <Text fontSize="large" color="black" >{data.owner.name}</Text>
+                </Box>
             </Box>
             <Box marginY={5}>
                 <Text fontSize="2xl">{data.content}</Text>

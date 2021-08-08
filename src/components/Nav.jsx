@@ -49,7 +49,7 @@ export const Nav = ({showFeed}) => {
     }
 
     return (
-        <HStack spacing="24px" width="100%" marginY = {1}>
+        <HStack spacing="24px" width="100%" marginY = {3} py={1} borderBottom = "2px solid lightgrey">
 
             <Box onClick = {() => history.goBack()} >
                 <Heading  color = "twitter.500" cursor="pointer">DevTalk</Heading>
