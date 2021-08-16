@@ -101,7 +101,7 @@ export const Signup = () => {
                     spacing={2}
                     align="center"
                     marginTop="2rem"
-                    backgroundColor="lightgrey"
+                    backgroundColor="#AFD5E3"
                     padding="2rem"
                     borderRadius="6px"
                     minWidth="30rem"
